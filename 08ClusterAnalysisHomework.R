@@ -74,3 +74,5 @@ km.protein5 = kmeans(protein.scale, centers = 3)
 # 5. Cut your complete linkage tree into 5 groups.
 #   a. Visualize the solution overlaid on top of the dendrogram.
 #   b. Interpret the clusters by aggregating across the median.
+
+#test
