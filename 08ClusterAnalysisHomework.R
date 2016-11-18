@@ -1,14 +1,13 @@
 ############################################################################ - @wen
 plot(allstate.train[, 118], allstate.train[, 130]) # cont117 and cont129, aes(fill = cat_), will find out the key categorical var.
 
-library(data.table)
 library(ggplot2)
 library(vioplot)
 library(car)
 
 # setwd()
-allstate.train = fread('train.csv')
-allstate.test = fread('test.csv')
+allstate.train = read.csv('train.csv')
+allstate.test = read.csv('test.csv')
 
 cont = 118:132
 cat = 2:117
