@@ -47,6 +47,32 @@ plot(allstate.train[, 118], allstate.train[, 126]) # possible linear
 plot(allstate.train[, 118], allstate.train[, 127]) # possible linear
 plot(allstate.train[, 118], allstate.train[, 130]) # two lines ???
 
-# to be continued ...
+## differences of the levels in cat vars between train.csv and test.csv
+lst = c()
+for (i in 2:117){
+  lst[i-1] = identical(levels(allstate.train[, i]), levels(allstate.test[, i]))
+}
+cat.different = which(lst == F) + 1
 
+for (i in cat.different){
+  cat("cat", i-1,"train set has", setdiff(allstate.train[, i], allstate.test[, i]), ';')
+  cat("test set has", setdiff(allstate.test[, i], allstate.train[, i]),"\n")
+}
+# cat 89 train set has I ;test set has F 
+# cat 90 train set has G ;test set has  
+# cat 92 train set has F ;test set has G E 
+# cat 96 train set has  ;test set has H 
+# cat 99 train set has  ;test set has U 
+# cat 101 train set has N U ;test set has  
+# cat 102 train set has H J ;test set has  
+# cat 103 train set has  ;test set has M 
+# cat 105 train set has R S ;test set has  
+# cat 106 train set has  ;test set has Q 
+# cat 109 train set has BM CJ BV BY BT B BF BP J AG AK ;test set has AD 
+# cat 110 train set has BK H BN DV EI BD BI AN AF CB EH ;test set has BH CA EN 
+# cat 111 train set has D ;test set has L 
+# cat 113 train set has BE T AC ;test set has AA R 
+# cat 114 train set has X ;test set has  
+# cat 116 train set has BI V BL X FS P GQ AY MF JD AH EV CC AB W AM IK AT JO AS JN BF DY IB EQ JT AP MB C IO DQ HO MT FO JI FN HU IX ;
+#          test set has AQ EM FY AI N ET KO BJ IW DB LP MX BR BH JS ER A BN BE IS LS HS EX 
 
