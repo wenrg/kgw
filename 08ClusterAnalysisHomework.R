@@ -31,7 +31,7 @@ vioplot(allstate.train[, 132 ])
 
 # transform loss
 plot(density(allstate.train[, 132]))
-model.saturated = lm(loss ~., data = allstate.train)
+model.saturated = lm(loss ~., data = allstate.train[, -1])
 ms.summary = summary(model.saturated)
 ms.coef = ms.summary$coefficients
 bc = boxCox(model.saturated) # lambda = 0, log(y)
@@ -48,3 +48,5 @@ plot(allstate.train[, 118], allstate.train[, 127]) # possible linear
 plot(allstate.train[, 118], allstate.train[, 130]) # two lines ???
 
 # to be continued ...
+
+
