@@ -14,52 +14,6 @@ dim(as.train)
 library(VIM)
 aggr(as.train)
 
-# #Visualization by tabplot
-# library(tabplot)
-# library(data.table)
-# columns <- c("numeric",
-#              rep("character", 2),
-#              rep("numeric", 2),
-#              rep("character", 12),
-#              rep("numeric", 4),
-#              rep("character", 5),
-#              "numeric",
-#              rep("character", 7),
-#              "numeric",
-#              "character",
-#              rep("numeric", 3),
-#              rep("character", 4),
-#              rep("numeric", 10),
-#              "character",
-#              "numeric",
-#              "character",
-#              "numeric",
-#              rep("character", 2),
-#              "numeric",
-#              "character",
-#              rep("numeric", 2),
-#              rep("character", 3),
-#              rep("numeric", 6),
-#              rep("character", 3),
-#              rep("numeric", 3),
-#              rep("character", 2),
-#              rep("numeric"))
-# 
-# for (i in 1:80) {
-#   if (typeof(data[, i]) == "character") {
-#     data[is.na(data[, i]), i] <- ""
-#     data[, i] <- as.factor(data[, i])
-#   }
-# }
-# 
-# for (i in 1:16) {
-#   plot(tableplot(data, select = c(((i - 1) * 5 + 1):(i * 5), 81), 
-#                  sortCol = 6, nBins = 73, plot = FALSE), 
-#        fontsize = 12, title = paste("log(SalePrice) vs ", 
-#                                     paste(colnames(data)[((i - 1) * 5 + 1):(i * 5)], 
-#                                           collapse = "+"), sep = ""), showTitle = TRUE, fontsize.title = 12)
-# }
-
 ## Visualization corr
 library(dplyr)
 library(corrplot)
