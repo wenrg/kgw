@@ -10,7 +10,7 @@ cont = 118:132
 cat = 2:117
 
 # transform loss
-loss.log = log(allstate.train$loss)
+loss.log = log(allstate.train$loss) + 1
 
 
 # dummy variables: cat vars over 53 levels
@@ -44,8 +44,8 @@ loss.test = loss.log[-train.index]
 # interaction.depth = 6
 # shrinkage = 0.5
 tCtrl = trainControl(method = 'cv', number = 10, verboseIter = T, summaryFunction = defaultSummary)
-gbmGrid = expand.grid(n.trees = seq(100, 300, 20), ###################
-                      interaction.depth = 6, # this is the best tree depth, no need to change
+gbmGrid = expand.grid(n.trees = seq(100, 300, 20), 
+                      interaction.depth = 6, 
                       shrinkage = 0.1,
                       n.minobsinnode = 20)
 gbmFit = train(x = sub.dmtrain, 
@@ -85,3 +85,21 @@ predicted.loss = predict(gbmFit, dm.astest)
 predicted.eloss = exp(predicted.loss)
 sample_submission$loss = predicted.eloss
 write.csv(sample_submission, file = 'sample_submission.csv', row.names = F)
+
+
+#########################################################################################################
+##############################best tuning parameters#####################################################
+#########################################################################################################
+
+tCtrl = trainControl(method = 'cv', number = 5, verboseIter = T, summaryFunction = defaultSummary)
+gbmGrid = expand.grid(n.trees = 1700,
+                      interaction.depth = 6, # this is the best tree depth, no need to change
+                      shrinkage = 0.1,
+                      n.minobsinnode = 50)
+gbmFit = train(x = sub.dmtrain, 
+               y = loss.train,
+               method = 'gbm', 
+               trControl = tCtrl,
+               tuneGrid = gbmGrid,
+               metric = 'RMSE',
+               maximize = F)
